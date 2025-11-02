@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Mi Blanquita 💜</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #b19cd9;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fondo decorado con corazones */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Heart_corazón.svg/1024px-Heart_corazón.svg.png');
+      background-repeat: repeat;
+      background-size: 80px;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #4b0082;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .overlay button {
+      padding: 12px 24px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    audio {
+      display: none;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      margin-top: 40px;
+    }
+
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    .photo {
+      width: 100%;
+      height: 200px;
+      background-color: #eee;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #4b0082;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .carta {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #f3e5f5;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #8a2be2;
+      font-size: 18px;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+    }
+
+    .carta p {
+      display: none;
+    }
+
+    .stars, .hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .star, .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: float 2s ease-out forwards;
+    }
+
+    .star {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1024px-Five-pointed_star.svg.png');
+    }
+
+    .heart {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Heart_corazón.svg/1024px-Heart_corazón.svg.png');
+    }
+
+    @keyframes float {
+      0% { transform: scale(0.5) translateY(0); opacity: 1; }
+      100% { transform: scale(1.5) translateY(-100px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay">
+    <h1>💜 Para Mi Blanquita 💜</h1>
+    <p>Haz clic para reproducir nuestra canción y ver la sorpresa</p>
+    <button onclick="startPage()">Entrar</button>
+  </div>
+
+  <audio id="audio" loop>
+    <source src="TU_CANCION.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <h1>💜 Para Mi Blanquita 💜</h1>
+
+  <div class="collage">
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto1.jpg" alt="Foto 1"></div>
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto2.jpg" alt="Foto 2"></div>
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto3.jpg" alt="Foto 3"></div>
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto4.jpg" alt="Foto 4"></div>
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto5.jpg" alt="Foto 5"></div>
+    <div class="photo" onclick="reveal(this, 'star')"><img src="foto6.jpg" alt="Foto 6"></div>
+  </div>
+
+  <div class="carta" onclick="reveal(this, 'heart')">
+    <h2 style="text-align:center;">💌 Mi Carta Para Ti</h2>
+    <p>
+      Blanquita hermosa, esta página es solo una pequeña muestra de lo mucho que te amo. Cada día contigo es un regalo, y mi corazón late más fuerte por ti. Gracias por ser mi luz. 💜
+    </p>
+  </div>
+
+  <script>
+    function startPage() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('audio').play();
+    }
+
+    function reveal(element, type) {
+      const img = element.querySelector('img');
+      const text = element.querySelector('p');
+      if (img) img.style.display = 'block';
+      if (text) text.style.display = 'block';
+
+      const container = document.createElement('div');
+      container.className = type === 'star' ? 'stars' : 'hearts';
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = type;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        container.appendChild(particle);
+      }
+      element.appendChild(container);
+      setTimeout(() => container.remove(), 2000);
+    }
+  </script>
+
+</body>
+</html>
