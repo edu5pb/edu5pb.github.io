@@ -7,22 +7,14 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
+      background-image: url('fondo.jpg');
+      background-repeat: repeat;
+      background-size: contain;
+      background-position: center;
+      background-attachment: fixed;
       background-color: #b19cd9;
       overflow-x: hidden;
       position: relative;
-    }
-
-    /* Fondo decorado con corazones */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Heart_corazón.svg/1024px-Heart_corazón.svg.png');
-      background-repeat: repeat;
-      background-size: 80px;
-      opacity: 0.1;
-      z-index: -1;
     }
 
     .overlay {
@@ -38,15 +30,38 @@
       z-index: 9999;
     }
 
+    .overlay h1,
+    .overlay p,
     .overlay button {
-      padding: 12px 24px;
-      font-size: 20px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .overlay h1 {
+      animation-delay: 0.2s;
+      text-shadow: 2px 2px 6px #8a2be2;
+    }
+
+    .overlay p {
+      animation-delay: 0.6s;
+    }
+
+    .overlay button {
+      animation-delay: 1s;
+      padding: 14px 28px;
+      font-size: 22px;
       background-color: #ff69b4;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 14px;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #ff69b4;
+      transition: transform 0.2s ease;
+    }
+
+    .overlay button:hover {
+      transform: scale(1.05);
     }
 
     audio {
@@ -57,6 +72,16 @@
       text-align: center;
       color: white;
       margin-top: 40px;
+      text-shadow: 2px 2px 6px #8a2be2;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     .collage {
@@ -145,9 +170,9 @@
     Tu navegador no soporta audio.
   </audio>
 
-  <h1>💜 Para Mi Blanquita 💜</h1>
+  <h1 class="fade-in">💜 Para Mi Blanquita 💜</h1>
 
-  <div class="collage">
+  <div class="collage fade-in">
     <div class="photo" onclick="reveal(this, 'star')"><img src="foto1.jpg" alt="Foto 1"></div>
     <div class="photo" onclick="reveal(this, 'star')"><img src="foto2.jpg" alt="Foto 2"></div>
     <div class="photo" onclick="reveal(this, 'star')"><img src="foto3.jpg" alt="Foto 3"></div>
@@ -156,7 +181,7 @@
     <div class="photo" onclick="reveal(this, 'star')"><img src="foto6.jpg" alt="Foto 6"></div>
   </div>
 
-  <div class="carta" onclick="reveal(this, 'heart')">
+  <div class="carta fade-in" onclick="reveal(this, 'heart')">
     <h2 style="text-align:center;">💌 Mi Carta Para Ti</h2>
     <p>
       Blanquita hermosa, esta página es solo una pequeña muestra de lo mucho que te amo. Cada día contigo es un regalo, y mi corazón late más fuerte por ti. Gracias por ser mi luz. 💜
