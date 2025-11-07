@@ -15,6 +15,7 @@
       background-color: #b19cd9;
       overflow-x: hidden;
       position: relative;
+      font-size: 1.2rem;
     }
 
     .overlay {
@@ -38,6 +39,7 @@
     }
 
     .overlay h1 {
+      font-size: 3.5rem;
       animation-delay: 0.2s;
       text-shadow: 2px 2px 6px #8a2be2;
     }
@@ -49,7 +51,7 @@
     .overlay button {
       animation-delay: 1s;
       padding: 14px 28px;
-      font-size: 22px;
+      font-size: 1.4rem;
       background-color: #ff69b4;
       color: white;
       border: none;
@@ -69,6 +71,7 @@
     }
 
     h1 {
+      font-size: 3rem;
       text-align: center;
       color: white;
       margin-top: 40px;
@@ -117,14 +120,21 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px #8a2be2;
-      font-size: 18px;
+      font-size: 1.2rem;
       cursor: pointer;
       position: relative;
       text-align: center;
     }
 
+    .carta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
     .carta p {
       display: none;
+      font-size: 1.4rem;
+      line-height: 1.8;
     }
 
     .stars, .hearts {
@@ -154,6 +164,31 @@
     @keyframes float {
       0% { transform: scale(0.5) translateY(0); opacity: 1; }
       100% { transform: scale(1.5) translateY(-100px); opacity: 0; }
+    }
+
+    @media screen and (max-width: 600px) {
+      h1, .overlay h1 {
+        font-size: 2.2rem;
+      }
+
+      .overlay button {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+      }
+
+      .carta {
+        font-size: 1.2rem;
+        padding: 18px;
+      }
+
+      .carta h2 {
+        font-size: 1.8rem;
+      }
+
+      .carta p {
+        font-size: 1.4rem;
+        line-height: 1.8;
+      }
     }
   </style>
 </head>
@@ -185,7 +220,7 @@
   </div>
 
   <div class="carta fade-in" onclick="reveal(this, 'heart')">
-    <h2 style="text-align:center;">💌 Mi Carta Para Ti</h2>
+    <h2>💌 Mi Carta Para Ti</h2>
     <p>
       Hola mi blanquita hermosa, he hecho este presente para ti, espero te guste.<br><br>
       Han sido ya dos meses desde que te pedí que seas mi novia, decisión de la cual no me arrepiento y ni me arrepentiré y como siempre te he dicho, es un placer conocer a tan bella mujer, mujer tan bella por dentro y por fuera, tú lo sabes aunque por más que te digan que eres hermosa te pones nerviosa y de color rosa, ese rosa que te hace ver fabulosa y peligrosa.<br><br>
@@ -227,4 +262,3 @@
 
 </body>
 </html>
-
